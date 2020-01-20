@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+
+{% block title %} search Page
+{% endblock title %}
+
+{% block blogactive %} active{% endblock blogactive %}
+{% load static %}
+
+
+<style>
+        {% block css %} 
+     
+
+ button
+{
+  
+      background: linear-gradient(57deg, #00C6A7 , #1E4D92);   
+
+}
+
+
+ button:hover{
+      background: linear-gradient(57deg, #1E4D92, #00C6A7 );   
+}
+
+.bgimag{
+  background-image: url({% static 'img/sp5.jpg' %});
+  background-size: cover;
+  border:5px solid black;
+
+ }
+
+ .bgimage2
+ {
+ background-image: url({% static 'img/sp8.jpg' %});
+  background-size: cover;  
+ }
+
+
+
+
+    {% endblock %}
+    </style>
+
+{% block body %}
+
+
+<section class="container-fluid pt-1">
+        <div class=" pt  animated rotateInUpRight">
+            <h2 class="text-center text-gray-dark text-white font-weight-bold p-2 bg-warning ">$$$ Search Results For My Blogpost $$$</h2>
+
+{% if SPPosts|length < 1 %}
+
+            <p> MY BlogPost No Search Queery is avilable in  Results</p>
+            Your search Querry : <b>{{queery}}</b> Did not Django 3 My Blog Post match any documents <br>
+            Suggestion:
+           <h3 class="text-info"> Try different keywords:</h3>
+           <h4>Hmm. We’re having trouble finding that site</h4>
+
+            <ol>
+                <b>If that address is correct, here are three other things you can try</b>
+
+                <li>Make Sure that all words are spelled Correctly</li>
+                <li>Try More General queerys </li>
+                <li>If you are connected but behind a firewall, check that Firefox has permission to </li>
+                <li>Check your network connection.</li>
+
+            </ol>
+            <br>
+                    <a href="/blog/{{post.slug}}" role="button" class=" btn btn-info text-white font-weight-bold">Try Again..</a>
+        </div>
+
+
+
+{% endif %}
+
+
+ 
+    {% for post in SPPosts %}
+    
+
+<section class="container-fluid bgimag">
+    
+<div class="container bg-light p-2">
+    <div class="row my-2">
+        <div class="col-md-12">
+
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+                <div class="col p-4 d-flex flex-column position-static bgimage2">
+                    <h2><i style='font-size:50px' class='fas text-white fa-2x animated infinite  heartBeat'>&#xf559;</i>
+                    <strong class="inline-block mb-2 text-white font-weight-bold text-uppercase ">Article By {{post.author}}</strong></h2>
+
+                    <h3 class= "mb-0 text-right text-uppercase text-white"><i class='fas fa-2x text-white animated infinite  jackInTheBox'>&#xf501;</i>{{post.title}}</h3><br>
+
+                    <div class="mb-1 text-white font-weight-bold p-2 text-uppercase"><h3><i class="fas fa-clock animated infinite  heartBeat "></i> {{post.timeStamp}}</h3></div>
+                    <p class="card-text mb-auto text-white font-weight-bold text-justify">{{post.content|truncatechars:500 }}</p><br><br>
+                    <div class="p-2">
+
+                    <button class=" btn btn-warning  btn-md"><a href="/blog/{{post.slug}}" role="button" class=" text-white font-weight-bold text-uppercase animated infinite  heartBeat">READ MORE..</a></button>
+</div>
+                </div>
+
+
+
+            
+
+
+            </div>
+            </div>
+        </div>
+            </div>
+        
+
+
+    </section>
+           
+               
+{% endfor %}
+            
+  
+        
+            
+{% endblock %}

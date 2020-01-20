@@ -1,0 +1,64 @@
+
+
+
+ {% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block title %}  Blog Post{% endblock title %}
+
+{% block blogactive %}  active{% endblock blogactive %}
+
+
+  <style>
+        {% block css %} 
+     
+
+ button
+{
+  
+      background: linear-gradient(57deg, #00C6A7 , #1E4D92);   
+
+}
+
+
+ button:hover{
+      background: linear-gradient(57deg, #1E4D92, #00C6A7 );   
+}
+
+.bgimag{
+  background-image: url({% static 'img/sp2.jpg' %});
+  background-size: cover;
+ }
+
+
+
+
+    {% endblock %}
+    </style>
+
+{% block body %}
+ 
+
+ <h1 class="text-center bg-warning text-white font-weight-bold">Blogpost Page</h1>
+
+
+<div class="container-fluid pt-5 bgimag">
+	<h2>
+                    <strong class="d-inline-block mb-2  font-weight-bold text-uppercase text-right text-white"> <i style='font-size:50px' class='fas ml-3 animated infinite flash'>&#xf559;</i>Article By {{post.author}}</strong></h2>
+	<h2 class="blog-post-title text-white text-uppercase font-weight-bold text-right"><i class='fas fa-2x text-white animated infinite wobble'>&#xf501;</i>{{post.title}}</h2>
+	<p class="blog-post-meta text-white font-weight-bold text-right"><i class="fas fa-clock fa-2x animated infinite heartBeat"></i>
+   {{post.timeStamp}} By<a href="/about"></a>{{post.author}} </p>
+
+   <div class="container bg-info" >
+	<p class="text-gray-dark font-weight-bold text-justify container text-white p-5 animated  heartBeat">{{post.content}}</p>
+	 <a class="btn btn-success btn-lg" href="/blog">BACK</a>
+   </div>
+	<hr>
+</div>
+
+
+    {% endblock %}
+
+

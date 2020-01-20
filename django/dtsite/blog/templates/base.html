@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.css" integrity="sha256-YC896To53D/eet6K3jAwOq67iCIK24u2Hg6CQ+026I8=" crossorigin="anonymous" />
+
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+
+
+
+   <title>  {% block title %} SPTECHGURU  {% endblock title %}    </title>
+{% load static %}
+
+    <style>
+        {% block css %} 
+     button
+{
+  
+      background: linear-gradient(57deg, #00C6A7 , #1E4D92);   
+      border-radius: 50px;
+
+}
+
+
+button:hover{
+      background: linear-gradient(57deg, red, gold );   
+      border-radius: 50%;
+
+}
+
+
+  * {
+    margin: 0px;
+    padding: 0px;
+   font-family: 'Kaushan Script', cursive;
+}
+ ul
+ {
+  list-style: none;
+ }
+
+ ul li 
+ {
+  text-decoration: none;
+
+ }
+ul li a
+{
+  font-size: 20px;
+}
+h1
+{
+  font-size: 50px;
+  text-transform: uppercase;
+}
+
+
+.bgimag{
+  background-image: url({% static 'img/sp5.jpg' %});
+  background-size: cover;
+ }
+
+label
+{
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+
+
+
+
+    {% endblock %}
+    </style>
+  </head>
+  <body>
+
+<section class="container-fluid bg-dark">
+  <div class="">
+   <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand text-warning font-weight-bold animated infinite flash" href="/"><h3>
+  SPTECHPOST</h3></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse text-white text-uppercase" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto text-white">
+      <li class="nav-item {% block homeactive %} {% endblock homeactive %}">
+        <a class="nav-link text-white font-weight-bold" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item {% block aboutactive %} {% endblock aboutactive %}">
+        <a class="nav-link text-white font-weight-bold" href="/about">about</a>
+      </li>
+      <li class="nav-item {% block blogactive %} {% endblock blogactive %}">
+        <a class="nav-link text-white font-weight-bold" href="/blog">blog</a>
+      </li>
+      <li class="nav-item {% block contactactive %} {% endblock contactactive %}">
+        <a class="nav-link text-white font-weight-bold mr-3" href="/contact">contact</a>
+      </li>
+
+                     <li class="nav-item">
+                            <a class="nav-link text-danger font-weight-bold" href="/admin" blank="data-target">
+                    <button class="btn btn-md btn-danger "><i class=" font-weight-bold text-white"></i>ADMIN</button></a>
+                        </li>
+     
+    <form method="get" action="/search" class="form-inline">
+      <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="querry" id="querry">
+      <button class="btn btn-danger btn-md ml-2" type="submit">Search</button>
+
+    </form>
+
+
+
+{% if user.is_authenticated %} 
+
+<ul class="navbar-nav ml-auto"> 
+
+  <div class="btn-group dropright">
+
+ <button type="button" class="btn btn-danger btn-md ml-3 dropright">
+ Welcome: {{request.user}}
+  </button>
+
+  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropright</span>
+  </button>
+
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/logout">Logout</a>
+          <a class="dropdown-item" href="/signup">Signup</a>
+        </div>
+  </div>
+
+
+      
+
+    </ul>
+{% else %}
+
+
+<button type="button" class="btn  btn-primary ml-2 " data-toggle="modal" data-target="#loginmodel">
+  login
+</button>
+
+<button type="button" class="btn  btn-danger ml-2 " data-toggle="modal" data-target="#signupnmodel">
+  Signup
+</button>
+
+{% endif %}
+
+
+
+  </div>
+</nav>
+</div>
+</section>
+
+
+{% for message in messages %}
+
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+
+<!-- <!-Login - Modal -->
+<div class="modal fade " id="loginmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <h2 class="text-center font-weight-bold text-info text-uppercase p-2"> Login Here</h2>
+<hr>
+      <div class="modal-body">
+        <form action="/login" method="post">{% csrf_token %}
+  <div class="form-group text-danger font-weight-bold text-uppercase">
+    <label for="loginusername">UserName</label>
+    <input type="text" class="form-control" id="loginusername" name="loginusername" aria-describedby="emailHelp" placeholder="Enter Your UserName "  required="">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+
+  <div class="form-group  text-danger font-weight-bold text-uppercase">
+    <label for="loginpassword">Password</label>
+    <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Confirm Your password" required="">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your Confirm password  with anyone else.</small>
+
+  </div>
+
+
+  <button type="submit" class="btn btn-info">Submit</button>
+</form>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!--/////////////////////// signup start/////////////////// -->
+<section class="container-fluid bg-dark">
+<div class="modal fade" id="signupnmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <h2 class="text-center font-weight-bold text-success text-uppercase p-2"> Sign Up Here</h2>
+
+      <div class="modal-body">
+
+        <!-- ///////////////action performs/////////////// -->
+        <form action="/signup" method="post">{% csrf_token %}
+
+            <div class="form-group">
+    <label for="username">USER NAME :</label>
+    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder=" User name (Lowercase & alphnumeric )" required="">
+  </div>
+
+  <div class="form-group">
+    <label for="fname">First NAME :</label>
+    <input type="text" class="form-control" id="fname" name="fname" aria-describedby="emailHelp" placeholder="first name" required="">
+  </div>
+
+    <div class="form-group">
+    <label for="lname">Last NAME :</label>
+    <input type="text" class="form-control" id="lname" name="lname" aria-describedby="emailHelp" placeholder="Last Name" required="">
+  </div>
+
+
+    <div class="form-group">
+    <label for="email">EMAIL Address :</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required="">
+  
+  </div>
+
+
+  <div class="form-group">
+    <label for="pass1">Enter your Password :</label>
+    <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose Your Password" required="">
+  </div>
+
+
+  <div class="form-group">
+    <label for="pass2">REEnter your Password :</label>
+    <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Your Password" required="">
+  </div>
+
+
+  <button type="submit" class="btn btn-success btn-md">Submit</button>
+</form>
+
+      </div>
+      <!-- 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger text-right" data-dismiss="modal">Close</button>
+
+      </div> -->
+    </div>
+  </div>
+</div>
+
+</section>
+
+<!--/////////////////////// signup closed Model /////////////////// -->
+
+
+{% block body %}
+
+{% endblock body %}
+
+
+
+    {% block footer %}
+
+<!-- Footer -->
+<section class="container-fluid bg-dark text-gray-dark text-white">
+<footer class="page-footer font-small mdb-color pt-4 ">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Footer links -->
+    <div class="row text-center text-md-left mt-3 pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h1 class="text-uppercase mb-4 font-weight-bold text-warning  animated infinite flipOutY">SptechPOST</h1>
+        <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+          consectetur
+          adipisicing elit.</p>
+      </div>
+      <!-- Grid column -->
+
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-2 col-xl-2 mx-auto mt-3 animated  wobble">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">ALl links</h5>
+        <p>
+          <a href="/" class="text-white font-weight-bold">HOME</a>
+        </p>
+        <p>
+          <a href="/about" class="text-white font-weight-bold" >ABOUT</a>
+        </p>
+        <p>
+          <a href="/blog" class="text-white font-weight-bold">BLOG</a>
+        </p>
+        <p>
+          <a href="/contact" class="text-white font-weight-bold">CONTACT</a>
+        </p>
+      </div>
+
+      <!-- Grid column -->
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h6>
+        <p>
+          <i class="fas fa-home fa-2x mr-3 animated infinite flipOutY"></i>27/1 Prince Nagar Banganga Indore (M.P.)</p>
+        <p>
+          <i class="fas fa-envelope fa-2x  mr-3 animated infinite lightSpeedIn"></i> sptech1698@gmail.com</p>
+        <p>
+          <i class="fas fa-phone fa-2x mr-3 animated infinite flipOutX"></i> + 8817309010</p>
+        <p>
+          <i class="fas fa-print fa-2x mr-3 animated infinite flipOutY"></i> +8839102688</p>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Footer links -->
+
+    <hr>
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8">
+
+        <!--Copyright-->
+        <p class="text-center text-md-left">© 2019 Copyright:
+          <a href="/">
+            <strong class="text-warning"> Sptechpblogpost.com</strong>
+          </a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1 " href="https://www.facebook.com/">
+                <i class="fab fa-facebook-f fa-2x animated infinite lightSpeedIn"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/login">
+                <i class="fab fa-twitter fa-2x animated infinite lightSpeedOut"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://account.google.com
+">
+                <i class="fab fa-google-plus-g fa-2x animated infinite rotateInDownLeft"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com ">
+                <i class="fab fa-linkedin-in fa-2x animated infinite rotateOut"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+</footer>
+</section>
+<!-- Footer -->
+
+
+     {% endblock %}
+
+
+<!-- 
+
+     JQuery
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+Bootstrap tooltips
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+Bootstrap core JavaScript
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+MDB core JavaScript
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script> -->
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+
+
+ {% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block title %} about
+{% endblock title %}
+
+{% block aboutactive %} active {% endblock aboutactive %}
+
+
+  <style>
+        {% block css %} 
+    
+
+.sp img
+{
+  border:5px solid skyblue;
+  border-radius: 50%;
+  width: 103%;
+  height: 434px;
+
+}
+
+ button
+{
+  
+      background: linear-gradient(57deg, #00C6A7 , #1E4D92);   
+
+}
+
+
+ button:hover{
+      background: linear-gradient(57deg, #1E4D92, #00C6A7 );   
+}
+
+/*.bgimag{
+  background-image: url({% static 'img/1.jpg' %});
+  background-size: cover;
+}
+p{
+  color: blue; 
+  font-weight: bold;
+  font-size: 20px;
+}
+*/
+
+    {% endblock %}
+    </style>
+
+
+{% block body %}
+<!-- 
+
+    <h1 class="text-center text-uppercase text-white font-weight-bold bg-warning">About Us :</h1> -->
+
+<section class="container-fluid bg-light p-5 bgimag">
+  <div class="row">
+
+
+   <div class="col-md-8 text-gray-dark">
+     <h1 class="text-center text-white  font-weight-bold p-2 text-uppercase"><i class='fas fa-atom animated infinite rollIn' style='font-size:48px;color:red'></i> About Us</h1>
+     <p class="text-justify">I Am Full Stack Developer course will establish you as an expert web developer in the MEAN stack. The term MEAN stack refers to a collection of JavaScript-based technologies used to develop web applications. MEAN is an acronym for MongoDB, Express, Angular, and Node.js. Mongo DB is a database system; Express is a back-end web framework; Angular.js is a front-end framework, and Node.js is a back-end runtime environment. The MEAN Stack Developer program is a structured learning path recommended by leading industry experts and ensures your mastery of full MEAN stack development.</p>
+ 
+<p class="text-right">The Full Stack Developer training program begins with Node.js and Express.js, which provide a solid foundation to understand and build web applications with the help of JavaScript. Next, you will gain a comprehensive understanding of Angular to help master front-end web development. Finally, you will receive training in MongoDB to learn all of the features of NoSQL database technology. We have included JavaScript, HTML, and CSS as electives to give you a further edge in becoming a full stack developer.</p> 
+ 
+<p class="text-center">This full stack developer course provides access to 100+ live instructor-led online classrooms, 90+ hours of self-paced video content, 7+ industry-based projects, 10+ simulation exams, a community moderated by experts, and other resources that ensure you follow the optimal path to your dream role of a MEAN stack developer.</p>
+   </div>
+   <div class="col-md-4 sp">
+  <img class="card-img img-fluid img-circle img-thumbnail" src="{% static 'img/35.jpg' %}" alt="Card image">
+  </div>
+
+</div>
+
+
+</section>
+
+
+
+
+
+{% endblock body %}

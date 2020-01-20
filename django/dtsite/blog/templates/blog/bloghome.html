@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Blog Home
+{% endblock title %}
+
+{% block blogactive %} active{% endblock blogactive %}
+
+<style>
+        {% block css %} 
+     
+
+ button
+{
+  
+      background: linear-gradient(57deg, #00C6A7 , #1E4D92);   
+
+}
+
+
+ button:hover{
+      background: linear-gradient(57deg, #1E4D92, #00C6A7 );   
+}
+
+.bgimag{
+  background-image: url({% static 'img/sp4.jpg' %});
+  background-size: cover;
+  border:5px solid gold;
+
+ }
+
+ .bgimage2
+ {
+ background-image: url({% static 'img/sp8.jpg' %});
+  background-size: cover;  
+ }
+
+
+
+
+    {% endblock %}
+    </style>
+
+{% block body %}
+
+        <h1 class="text-center bg-warning text-white font-weight-bold  text-uppercase">Blog Home Page</h1>
+    {% for post in allposts %}
+
+<section class="container-fluid bgimag">
+    
+<div class="container bg-light p-2">
+    <div class="row my-2">
+        <div class="col-md-12">
+
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+                <div class="col p-4 d-flex flex-column position-static bgimage2">
+                    <h2><i style='font-size:50px' class='fas text-white fa-2x animated infinite  heartBeat'>&#xf559;</i>
+                    <strong class="inline-block mb-2 text-white font-weight-bold text-uppercase ">Article By {{post.author}}</strong></h2>
+
+                    <h3 class="mb-0 text-right text-uppercase text-white"><i class='fas fa-2x text-white animated infinite  jackInTheBox'>&#xf501;</i>{{post.title}}</h3><br>
+
+                    <div class="mb-1 text-white font-weight-bold p-2 text-uppercase"><h3><i class="fas fa-clock animated infinite  hinge "></i> {{post.timeStamp}}</h3></div>
+                    <p class="card-text mb-auto text-white font-weight-bold text-justify animated  swing">{{post.content|truncatechars:500 }}</p><br><br>
+                    <div class="p-2">
+
+                    <button class=" btn btn-warning  btn-md"><a href="/blog/{{post.slug}}" role="button" class=" text-white font-weight-bold text-uppercase animated infinite hinge">READ MORE..</a></button>
+</div>
+                </div>
+
+
+
+            
+
+
+            </div>
+            </div>
+        </div>
+            </div>
+        
+
+
+    </section>
+           
+{% endfor %}
+            
+
+
+
+        
+{% endblock %}
+
